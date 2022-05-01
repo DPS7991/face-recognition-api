@@ -1,4 +1,4 @@
-const handleProfile = (db) => (req, res) => {
+const handleProfile = (req, res, db) => {
 	const { id } = req.params;
 	db.select("*")
 		.from("users")
@@ -10,9 +10,9 @@ const handleProfile = (db) => (req, res) => {
 				res.status(400).json("Not found");
 			}
 		})
-		.catch((err) => res.status(400).json("Not found"));
+		.catch((err) => res.status(400).json("error getting user"));
 };
 
 module.exports = {
-	handleProfile: handleProfile,
+	handleProfile,
 };
